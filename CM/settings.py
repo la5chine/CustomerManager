@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     'accounts.apps.AccountsConfig',
     'django_filters',
+
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -78,8 +80,12 @@ WSGI_APPLICATION = 'CM.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': "mydata",
+        'USER':'mechaker',
+        'PASSWORD':"123456789aA",
+        'HOST': 'database-2.chrhbdyzcibx.us-east-2.rds.amazonaws.com',
+        'PORT':'5432',
     }
 }
 
@@ -128,3 +134,15 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+
+
+#S3 BUCKETS CONFIG
+
+AWS_ACCESS_KEY_ID = 'AKIA5Y4CWIC3EX7CF4NK'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'chaker'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
