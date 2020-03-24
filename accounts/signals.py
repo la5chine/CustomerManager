@@ -5,6 +5,8 @@ from django.contrib.auth.models import Group
 
 def customer_profile(sender, instance, created, **kargs):
     if created:
+        allgroup = Group.objects.all()
+        print(allgroup)
         group = Group.objects.get(name='customer')
         instance.groups.add(group)
 
@@ -12,6 +14,4 @@ def customer_profile(sender, instance, created, **kargs):
             user = instance,
             name=instance.username,
             )
-        print('profile created')
-
 post_save.connect(customer_profile, sender = User)
