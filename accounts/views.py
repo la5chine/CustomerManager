@@ -85,6 +85,7 @@ def accountSettings(request):
 @login_required(login_url = 'login')
 @admin_only
 def home(request):
+    groups = request.user.groups.all()
     orders = Order.objects.all()
     customers = Customer.objects.all()
     total_customers = customers.count()
@@ -154,7 +155,7 @@ def updateOrder(request,pk):
         if form.is_valid():
             form.save()
             return redirect('/')
-    context = {'form':form}
+    context = {'formset':form}
     return render(request,'accounts/order_form.html',context)
 
 

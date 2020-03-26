@@ -1,4 +1,6 @@
 {% load static %}
+{% load templatetagname %}
+
 <style media="screen">
   .hello-msg{
     font-size: 18px;
@@ -15,7 +17,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      {% if request.user.is_stuff %}
+      {% if request.user|has_group:"admin" %}
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
       </li>
