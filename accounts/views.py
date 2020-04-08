@@ -56,14 +56,28 @@ def logoutUser(request):
 @allowed_users(allowed_roles = ['customer'])
 def userPage(request):
     orders = request.user.customer.order_set.all()
-    print(orders)
+    #print(orders)
     total_orders = orders.count()
     delivered = orders.filter(status = 'Delivered').count()
     pending = orders.filter(status ='Pending').count()
+    #print(request.user.customer)
+
+
+    OrderFormSet = inlineformset_factory(Customer, Order, fields=('Product',),extra = 4)
+    customer = request.user.customer
+    formset = OrderFormSet(queryset=Order.objects.none(),instance = customer)
+    if request.method =='POST':
+        formset = OrderFormSet(request.POST,instance = customer)
+        if formset.is_valid():
+            formset.save()
+            return redirect('/')
+
+
     context = {'orders' : orders,
     'total_orders' : total_orders,
     'delivered' : delivered,
-    'pending' : pending}
+    'pending' : pending,
+    'formset':formset}
     return render(request,'accounts/user.html',context)
 
 

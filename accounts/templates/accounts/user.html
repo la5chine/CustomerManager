@@ -1,25 +1,43 @@
 {% extends 'accounts/main.html' %}
 {% block content %}
 {% include 'accounts/status.html' %}
-
-<div class="col-md">
-  <hr>
-  <div class="card card-body">
-    <table class="table table-sm">
-      <tbody><tr>
-        <th>Product</th>
-        <th>Date Orderd</th>
-        <th>Status</th>
-      </tr>
-
-        {%for order in orders%}
-        <tr>
-          <td>{{order.Product}}</td>
-          <td>{{order.date_created}}</td>
-          <td>{{order.status}}</td>
+<br>
+  <div class="col">
+    <div class="row">
+    <div class="col-8">
+      <div class="card">
+      <table class="table table-sm">
+        <tbody><tr>
+          <th>Product</th>
+          <th>Date Orderd</th>
+          <th>Status</th>
         </tr>
-        {% endfor %}
-    </tbody></table>
+
+          {%for order in orders%}
+          <tr>
+            <td>{{order.Product}}</td>
+            <td>{{order.date_created}}</td>
+            <td>{{order.status}}</td>
+          </tr>
+          {% endfor %}
+      </tbody></table>
+    </div>
+    </div>
+    <div class="col-4">
+    <div class="card">
+      <div class="card-block">
+        <form class="" action="" method="POST">
+          {% csrf_token %}
+          {{ formset.management_form }}
+          {% for form in formset %}
+          {{form}}
+          <br>
+          {% endfor %}
+            <input type="submit" name="submit" value="Submit">
+        </form>
+      </div>
+    </div>
+  </div>
   </div>
 </div>
 
