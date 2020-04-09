@@ -101,6 +101,7 @@ def accountSettings(request):
 def home(request):
     groups = request.user.groups.all()
     orders = Order.objects.all()
+    ordersLast5 = Order.objects.all()[:10]
     customers = Customer.objects.all()
     total_customers = customers.count()
     total_orders = orders.count()
@@ -108,7 +109,7 @@ def home(request):
     pending = orders.filter(status ='Pending').count()
 
     context = {
-    'orders' : orders,
+    'orders' : ordersLast5,
     'customers' : customers,
     'total_customers' : total_customers,
     'total_orders' : total_orders,
