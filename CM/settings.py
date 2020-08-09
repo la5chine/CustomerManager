@@ -97,8 +97,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': "mydata",
-        'USER':'mechaker',
-        'PASSWORD':"123456789aA",
+        'USER':'************',
+        'PASSWORD':"***********",
         'HOST': 'database-2.chrhbdyzcibx.us-east-2.rds.amazonaws.com',
         'PORT':'5432',
     }
@@ -156,8 +156,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
 #S3 BUCKETS CONFIG
 STATIC_URL = 'http://' + 'chaker' + '.s3.amazonaws.com/'
-AWS_ACCESS_KEY_ID = 'AKIA5Y4CWIC3EX7CF4NK'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = '****************'
+AWS_SECRET_ACCESS_KEY = '******************'
 AWS_STORAGE_BUCKET_NAME = 'chaker'
 AWS_S3_HOST = "s3.eu-west-3.amazonaws.com"
 AWS_S3_REGION_NAME="eu-west-3"
